@@ -5,21 +5,24 @@
         that: "{{ program_path is defined }}"
         fail_msg: need program path
 
-    - set_fact:
+    - name: Initialize stack
+      set_fact:
         stack: []
 
     - name: Load program
       set_fact:
         program: '{{ lookup("file", program_path) }}'
 
-    - name: Lex
-      include_tasks: lex/main.yml
+    - name: Parse program
+      include_role:
+        name: parse
 
     - debug:
         var: cst
 
-    - name: Parse
-      include_tasks: parse/main.yml
+    - name: Extract AST
+      include_role:
+        name: extract-ast
 
     - debug:
         var: ast

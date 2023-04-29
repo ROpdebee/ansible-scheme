@@ -2,7 +2,7 @@
   set_fact:
     program_idx: '{{ program_idx | int + (program[program_idx | int:] | regex_search("^\s*") | length) }}'
 
-- name: Lex token
+- name: Parse token
   set_fact:
     cst: "{{ cst + [token] }}"
     program_idx: "{{ program_idx | int + (token | length) }}"
@@ -14,6 +14,6 @@
   set_fact:
     program_idx: '{{ program_idx | int + (program[program_idx | int:] | regex_search("^\s*") | length) }}'
 
-- name: Lex next
-  include_tasks: lex.yml
+- name: Parse next
+  include_tasks: parse.yml
   when: program[program_idx | int] != ')'

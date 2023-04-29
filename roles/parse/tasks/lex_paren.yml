@@ -5,7 +5,7 @@
     stack: "{{ stack + [cst] }}"
     cst: []
 
-- include_tasks: lex.yml
+- include_tasks: parse.yml
 
 - name: Stop lexing s-expr
   assert:

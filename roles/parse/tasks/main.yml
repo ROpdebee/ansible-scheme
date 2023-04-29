@@ -1,12 +1,11 @@
-- name: Set up context
-  set_fact:
-    cst: []
-    program_idx: 0
-
 - import_tasks: lex_whitespace.yml
 
 - assert:
     that: '{{ program[program_idx | int] == "(" }}'
     fail_msg: 'Expected "("'
 
-- include_tasks: lex.yml
+- include_tasks: parse.yml
+
+- assert:
+    that: '{{ program_idx | int >= program | length }}'
+    fail_msg: 'Expected EOF'
