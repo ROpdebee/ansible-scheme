@@ -1,0 +1,25 @@
+- name: Start lexing s-expr
+  set_fact:
+    paren_count: "{{ (0 if paren_count is not defined else paren_count | int) + 1 }}"
+    program_idx: "{{ program_idx | int + 1 }}"
+    stack: "{{ stack + [cst] }}"
+    cst: []
+
+- include_tasks: lex.yml
+
+- name: Stop lexing s-expr
+  assert:
+    that:
+      - "{{ paren_count | int > 0 }}"
+      - '{{ program[program_idx | int] == ")" }}'
+    fail_msg: 'Expected ")"'
+
+- set_fact:
+    program_idx: "{{ program_idx | int + 1 }}"
+    paren_count: "{{ paren_count | int - 1 }}"
+    stack: "{{ stack[:-1] }}"
+    cst: "{{ stack[-1] + [cst] }}"
+
+- name: Lex whitespace
+  set_fact:
+    program_idx: '{{ program_idx | int + (program[program_idx | int:] | regex_search("^\s*") | length) }}'

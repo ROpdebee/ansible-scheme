@@ -1,0 +1,7 @@
+- name: set result
+  set_fact:
+    result:
+      type: VALUE
+      data_type: BUILTIN
+      name: "{{ name }}"
+  when: name in __builtins

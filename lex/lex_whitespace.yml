@@ -1,0 +1,3 @@
+- name: Lex whitespace
+  set_fact:
+    program_idx: '{{ program_idx | int + (program[program_idx | int:] | regex_search("^\s*") | length) }}'

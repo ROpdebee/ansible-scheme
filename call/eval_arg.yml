@@ -1,0 +1,13 @@
+- name: save previous args # May otherwise be overwritten by a nested call
+  set_fact:
+    stack: "{{ stack + [args] }}"
+
+- name: eval argument
+  include_tasks: descend.yml
+  vars:
+    next_expr: "{{ arg }}"
+
+- name: restore previous args and append result to current arg_values
+  set_fact:
+    stack: "{{ stack[:-1] }}"
+    args: "{{ stack[-1] + [result] }}"

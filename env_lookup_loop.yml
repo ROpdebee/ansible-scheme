@@ -1,0 +1,9 @@
+- set_fact:
+    stack: "{{ stack + [env] }}"
+    env: "{{ env.parent }}"
+
+- include_tasks: env_lookup.yml
+
+- set_fact:
+    stack: "{{ stack[:-1] }}"
+    env: "{{ stack[-1] }}"

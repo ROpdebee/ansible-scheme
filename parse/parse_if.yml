@@ -1,0 +1,17 @@
+- set_fact:
+    stack: "{{ stack + [ast_children] }}"
+    ast_children: []
+
+- include_tasks: parse_body_item.yml
+  loop: "{{ cst[1:] }}"
+  loop_control:
+    loop_var: body_item
+
+- set_fact:
+    ast:
+      type: IF
+      condition: "{{ ast_children[0] }}"
+      consequent: "{{ ast_children[1] }}"
+      antecedent: "{{ ast_children[2] }}"
+    stack: "{{ stack[:-1] }}"
+    ast_children: "{{ stack[-1] }}"

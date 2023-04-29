@@ -1,0 +1,40 @@
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - assert:
+        that: "{{ program_path is defined }}"
+        fail_msg: need program path
+
+    - set_fact:
+        stack: []
+
+    - name: Load program
+      set_fact:
+        program: '{{ lookup("file", program_path) }}'
+
+    - name: Lex
+      include_tasks: lex/main.yml
+
+    - debug:
+        var: cst
+
+    - name: Parse
+      include_tasks: parse/main.yml
+
+    - debug:
+        var: ast
+
+    - include_vars: call/builtins/vars.yml
+
+    - name: Set up context
+      set_fact:
+        env: # Current environment, initially empty
+          parent:
+          bindings: {}
+        expr: "{{ ast }}"
+
+    - name: Start evaluation
+      include_tasks: eval.yml
+
+    - debug:
+        msg: "Final result is: {{ result }}"

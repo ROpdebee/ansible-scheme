@@ -1,0 +1,339 @@
+{ "ast": {
+        "children": [
+            {
+                "expr": {
+                    "body": [
+                        {
+                            "antecedent": {
+                                "arguments": [
+                                    {
+                                        "type": "NAME",
+                                        "value": "1"
+                                    },
+                                    {
+                                        "type": "NAME",
+                                        "value": "*"
+                                    },
+                                    {
+                                        "type": "NAME",
+                                        "value": "n"
+                                    },
+                                    {
+                                        "arguments": [
+                                            {
+                                                "type": "NAME",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "NAME",
+                                                "value": "*"
+                                            },
+                                            {
+                                                "type": "NAME",
+                                                "value": "n"
+                                            },
+                                            {
+                                                "type": "NAME",
+                                                "value": "fac"
+                                            },
+                                            {
+                                                "arguments": [
+                                                    {
+                                                        "type": "NAME",
+                                                        "value": "1"
+                                                    },
+                                                    {
+                                                        "type": "NAME",
+                                                        "value": "*"
+                                                    },
+                                                    {
+                                                        "type": "NAME",
+                                                        "value": "n"
+                                                    },
+                                                    {
+                                                        "type": "NAME",
+                                                        "value": "fac"
+                                                    },
+                                                    {
+                                                        "type": "NAME",
+                                                        "value": "-"
+                                                    },
+                                                    {
+                                                        "type": "NAME",
+                                                        "value": "n"
+                                                    },
+                                                    {
+                                                        "type": "NAME",
+                                                        "value": "1"
+                                                    }
+                                                ],
+                                                "target": {
+                                                    "arguments": [
+                                                        {
+                                                            "type": "NAME",
+                                                            "value": "n"
+                                                        },
+                                                        {
+                                                            "type": "NAME",
+                                                            "value": "0"
+                                                        }
+                                                    ],
+                                                    "target": {
+                                                        "type": "NAME",
+                                                        "value": "="
+                                                    },
+                                                    "type": "CALL"
+                                                },
+                                                "type": "CALL"
+                                            }
+                                        ],
+                                        "target": {
+                                            "arguments": [
+                                                {
+                                                    "type": "NAME",
+                                                    "value": "n"
+                                                },
+                                                {
+                                                    "type": "NAME",
+                                                    "value": "0"
+                                                }
+                                            ],
+                                            "target": {
+                                                "type": "NAME",
+                                                "value": "="
+                                            },
+                                            "type": "CALL"
+                                        },
+                                        "type": "CALL"
+                                    }
+                                ],
+                                "target": {
+                                    "arguments": [
+                                        {
+                                            "type": "NAME",
+                                            "value": "n"
+                                        },
+                                        {
+                                            "type": "NAME",
+                                            "value": "0"
+                                        }
+                                    ],
+                                    "target": {
+                                        "type": "NAME",
+                                        "value": "="
+                                    },
+                                    "type": "CALL"
+                                },
+                                "type": "CALL"
+                            },
+                            "condition": {
+                                "arguments": [
+                                    {
+                                        "type": "NAME",
+                                        "value": "n"
+                                    },
+                                    {
+                                        "type": "NAME",
+                                        "value": "0"
+                                    }
+                                ],
+                                "target": {
+                                    "type": "NAME",
+                                    "value": "="
+                                },
+                                "type": "CALL"
+                            },
+                            "consequent": {
+                                "type": "NAME",
+                                "value": "1"
+                            },
+                            "type": "IF"
+                        }
+                    ],
+                    "parameters": [
+                        "=",
+                        "n",
+                        "0"
+                    ],
+                    "type": "LAMBDA"
+                },
+                "name": "fac",
+                "type": "DEFINE"
+            },
+            {
+                "arguments": [
+                    {
+                        "type": "NAME",
+                        "value": "fac"
+                    },
+                    {
+                        "type": "NAME",
+                        "value": "5"
+                    }
+                ],
+                "target": {
+                    "expr": {
+                        "body": [
+                            {
+                                "antecedent": {
+                                    "arguments": [
+                                        {
+                                            "type": "NAME",
+                                            "value": "1"
+                                        },
+                                        {
+                                            "type": "NAME",
+                                            "value": "*"
+                                        },
+                                        {
+                                            "type": "NAME",
+                                            "value": "n"
+                                        },
+                                        {
+                                            "arguments": [
+                                                {
+                                                    "type": "NAME",
+                                                    "value": "1"
+                                                },
+                                                {
+                                                    "type": "NAME",
+                                                    "value": "*"
+                                                },
+                                                {
+                                                    "type": "NAME",
+                                                    "value": "n"
+                                                },
+                                                {
+                                                    "type": "NAME",
+                                                    "value": "fac"
+                                                },
+                                                {
+                                                    "arguments": [
+                                                        {
+                                                            "type": "NAME",
+                                                            "value": "1"
+                                                        },
+                                                        {
+                                                            "type": "NAME",
+                                                            "value": "*"
+                                                        },
+                                                        {
+                                                            "type": "NAME",
+                                                            "value": "n"
+                                                        },
+                                                        {
+                                                            "type": "NAME",
+                                                            "value": "fac"
+                                                        },
+                                                        {
+                                                            "type": "NAME",
+                                                            "value": "-"
+                                                        },
+                                                        {
+                                                            "type": "NAME",
+                                                            "value": "n"
+                                                        },
+                                                        {
+                                                            "type": "NAME",
+                                                            "value": "1"
+                                                        }
+                                                    ],
+                                                    "target": {
+                                                        "arguments": [
+                                                            {
+                                                                "type": "NAME",
+                                                                "value": "n"
+                                                            },
+                                                            {
+                                                                "type": "NAME",
+                                                                "value": "0"
+                                                            }
+                                                        ],
+                                                        "target": {
+                                                            "type": "NAME",
+                                                            "value": "="
+                                                        },
+                                                        "type": "CALL"
+                                                    },
+                                                    "type": "CALL"
+                                                }
+                                            ],
+                                            "target": {
+                                                "arguments": [
+                                                    {
+                                                        "type": "NAME",
+                                                        "value": "n"
+                                                    },
+                                                    {
+                                                        "type": "NAME",
+                                                        "value": "0"
+                                                    }
+                                                ],
+                                                "target": {
+                                                    "type": "NAME",
+                                                    "value": "="
+                                                },
+                                                "type": "CALL"
+                                            },
+                                            "type": "CALL"
+                                        }
+                                    ],
+                                    "target": {
+                                        "arguments": [
+                                            {
+                                                "type": "NAME",
+                                                "value": "n"
+                                            },
+                                            {
+                                                "type": "NAME",
+                                                "value": "0"
+                                            }
+                                        ],
+                                        "target": {
+                                            "type": "NAME",
+                                            "value": "="
+                                        },
+                                        "type": "CALL"
+                                    },
+                                    "type": "CALL"
+                                },
+                                "condition": {
+                                    "arguments": [
+                                        {
+                                            "type": "NAME",
+                                            "value": "n"
+                                        },
+                                        {
+                                            "type": "NAME",
+                                            "value": "0"
+                                        }
+                                    ],
+                                    "target": {
+                                        "type": "NAME",
+                                        "value": "="
+                                    },
+                                    "type": "CALL"
+                                },
+                                "consequent": {
+                                    "type": "NAME",
+                                    "value": "1"
+                                },
+                                "type": "IF"
+                            }
+                        ],
+                        "parameters": [
+                            "=",
+                            "n",
+                            "0"
+                        ],
+                        "type": "LAMBDA"
+                    },
+                    "name": "fac",
+                    "type": "DEFINE"
+                },
+                "type": "CALL"
+            }
+        ],
+        "type": "BODY"
+    }
+}

@@ -1,0 +1,12 @@
+- name: Save current expression and set new expression
+  set_fact:
+    stack: "{{ stack + [expr] }}"
+    expr: "{{ next_expr }}"
+
+- name: Evaluate expression
+  include_tasks: eval.yml
+
+- name: Restore old expression
+  set_fact:
+    stack: "{{ stack[:-1] }}"
+    expr: "{{ stack[-1] }}"

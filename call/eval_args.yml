@@ -1,0 +1,10 @@
+- name: set default args
+  set_fact:
+    args: []
+
+- name: eval arg {{ arg_idx }}
+  include_tasks: eval_arg.yml
+  loop: "{{ arg_expressions }}"
+  loop_control:
+    index_var: "arg_idx"
+    loop_var: arg

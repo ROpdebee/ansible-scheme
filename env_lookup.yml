@@ -1,0 +1,30 @@
+- debug:
+    msg: "looking up {{ name }}"
+
+- name: Unset result in case of lookup failure
+  set_fact:
+    result:
+
+- debug: var=env
+
+- name: set result
+  set_fact:
+    result: "{{ env.bindings[name] }}"
+  when: name in env.bindings
+  register: lookup_success
+
+- name: Try builtin
+  include_tasks: env_lookup_builtin.yml
+  when:
+    - lookup_success is skipped
+    - not env.parent
+
+- name: Try parent environment
+  include_tasks: env_lookup_loop.yml
+  when:
+    - lookup_success is skipped
+    - env.parent
+
+- assert:
+    that: result is defined and result is not none
+    fail_msg: "undefined variable {{ name }}"

@@ -1,0 +1,26 @@
+- name: evaluate arguments
+  include_tasks: call/eval_args.yml # Stores arguments in "args"
+  vars:
+    arg_expressions: "{{ expr.arguments }}"
+
+- set_fact:
+    # May be overridden when looking up definition
+    stack: "{{ stack + [args] }}"
+
+- name: lookup definition
+  include_tasks: descend.yml
+  vars:
+    next_expr: "{{ expr.target }}"
+
+- set_fact:
+    # Args for do_call
+    callee: "{{ result }}"
+    args: "{{ stack[-1] }}"
+    # Pop stack of descend.yml
+    stack: "{{ stack[:-1] }}"
+
+- debug:
+    msg: "calling {{ callee }}({{ args }})"
+
+- name: perform call
+  include_tasks: call/do_call.yml

@@ -1,0 +1,9 @@
+- name: eval condition
+  include_tasks: descend.yml
+  vars:
+    next_expr: "{{ expr.condition }}"
+
+- name: eval consequent if condition true or antecedent if condition false
+  include_tasks: descend.yml
+  vars:
+    next_expr: "{{ result.value | ternary(expr.consequent, expr.antecedent) }}"

@@ -1,0 +1,9 @@
+- assert:
+    that: "{{ args | length == 2 }}"
+    fail_msg: "Expected exactly 2 arguments for builtin function {{ callee.name }}"
+
+- set_fact:
+    result:
+      type: VALUE
+      value: "{{ args[0].value | int == args[1].value | int }}"
+  when: callee.name == '='

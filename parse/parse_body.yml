@@ -1,0 +1,15 @@
+- set_fact:
+    stack: "{{ stack + [ast_children] }}"
+    ast_children: []
+
+- include_tasks: parse_body_item.yml
+  loop: "{{ cst }}"
+  loop_control:
+    loop_var: body_item
+
+- set_fact:
+    ast:
+      type: BODY
+      children: "{{ ast_children }}"
+    stack: "{{ stack[:-1] }}"
+    ast_children: "{{ stack[-1] }}"

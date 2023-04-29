@@ -1,0 +1,3 @@
+__builtins: ["+", "-", "*", "="]
+__builtin_accumulators: ["+", "-", "*"]
+__builtin_relational: ["="]

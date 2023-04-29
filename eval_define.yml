@@ -1,0 +1,10 @@
+- name: Evaluate variable initializer
+  include_tasks: descend.yml
+  vars:
+    next_expr: "{{ expr.expr }}"
+
+- name: Define variable
+  set_fact:
+    env:
+      parent: "{{ env.parent }}"
+      bindings: "{{ env.bindings | combine({ expr.name: result }) }}"

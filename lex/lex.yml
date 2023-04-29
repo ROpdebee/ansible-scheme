@@ -1,0 +1,14 @@
+- name: Lex whitespace
+  set_fact:
+    program_idx: '{{ program_idx | int + (program[program_idx | int:] | regex_search("^\s*") | length) }}'
+
+- assert:
+    that: '{{ program[program_idx | int] != ")" }}'
+    fail_msg: Unexpected ')'
+
+- include_tasks: '{{ (program[program_idx | int].startswith("(")) | ternary("lex_paren", "lex_token") }}.yml'
+
+- include_tasks: lex.yml
+  when:
+    - program_idx | int < program | length
+    - program[program_idx | int] != ')'

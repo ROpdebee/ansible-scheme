@@ -1,0 +1,12 @@
+- name: fail if not builtin
+  assert:
+    that: "{{ callee.name in __builtins }}"
+    fail_msg: 'Undefined builtin "{{ callee.name }}"'
+
+- name: call accumulate
+  include_tasks: call/builtins/accumulate.yml
+  when: callee.name in __builtin_accumulators
+
+- name: call relational
+  include_tasks: call/builtins/relational.yml
+  when: callee.name in __builtin_relational

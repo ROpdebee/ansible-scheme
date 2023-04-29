@@ -1,0 +1,11 @@
+- set_fact:
+    stack: "{{ stack + [cst] }}"
+    cst: "{{ body_item }}"
+
+- name: parse body item
+  include_tasks: parse.yml
+
+- set_fact:
+    ast_children: "{{ ast_children + [ast] }}"
+    stack: "{{ stack[:-1] }}"
+    cst: "{{ stack[-1] }}"

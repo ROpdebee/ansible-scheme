@@ -1,0 +1,4 @@
+- set_fact:
+    ast:
+      type: NAME
+      name: "{{ cst }}"

@@ -1,0 +1,34 @@
+- assert:
+    that:
+      - callee.type == 'VALUE'
+      - callee.data_type == 'LAMBDA'
+    fail_msg: not callable
+
+- name: assert enough args
+  assert:
+    that: "{{ callee.parameters | length == args | length }}"
+    fail_msg: "Expected {{ callee.parameters | length }} arguments, got {{ args | length }}"
+
+- debug:
+    msg: "defining {{ callee.parameters | zip(args) }}"
+
+- name: Create local env and bind parameters
+  set_fact:
+    env:
+      parent: "{{ callee.closure }}"
+      bindings: "{{ dict(callee.parameters | zip(args)) }}"
+    stack: "{{ stack + [env] }}" # Repurpose stack as call stack
+
+- debug:
+    msg: "env is now {{ env }}"
+
+# This should automatically set the result
+- name: Eval body
+  include_tasks: descend.yml
+  vars:
+    next_expr: "{{ callee.body }}"
+
+- name: Leave local env
+  set_fact:
+    env: "{{ stack[-1] }}"
+    stack: "{{ stack[:-1] }}"

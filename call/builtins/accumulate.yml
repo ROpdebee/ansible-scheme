@@ -1,0 +1,24 @@
+- assert:
+    that: "{{ args | length >= 2 }}"
+    fail_msg: "Expected at least 2 arguments for builtin function {{ callee.name }}"
+
+# Initial accumulator
+- set_fact:
+    result: "{{ args[0] }}"
+
+- set_fact:
+    result:
+      type: VALUE
+      value: "{{ new_result | trim | int }}"
+  loop: "{{ args[1:] }}"
+  vars:
+    new_result: >-
+      {% if callee.name == '+' %}
+        {{ result.value | int + item.value | int }}
+      {% elif callee.name == '-' %}
+        {{ result.value | int - item.value | int }}
+      {% elif callee.name == '*' %}
+        {{ result.value | int * item.value | int }}
+      {% endif %}
+
+- debug: var=result

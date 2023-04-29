@@ -1,0 +1,9 @@
+- name: debug
+  debug:
+    var: expr
+
+- name: Dispatch to eval function
+  include_tasks: "{{ item }}"
+  with_first_found:
+    - "eval_{{ expr.type | lower }}.yml"
+    - "eval_value.yml"

@@ -1,0 +1,19 @@
+- name: Lex whitespace
+  set_fact:
+    program_idx: '{{ program_idx | int + (program[program_idx | int:] | regex_search("^\s*") | length) }}'
+
+- name: Lex token
+  set_fact:
+    cst: "{{ cst + [token] }}"
+    program_idx: "{{ program_idx | int + (token | length) }}"
+  when: token
+  vars:
+    token: '{{ program[program_idx | int:] | regex_search("^[^\s\)]+") }}'
+
+- name: Lex whitespace
+  set_fact:
+    program_idx: '{{ program_idx | int + (program[program_idx | int:] | regex_search("^\s*") | length) }}'
+
+- name: Lex next
+  include_tasks: lex.yml
+  when: program[program_idx | int] != ')'

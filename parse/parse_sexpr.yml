@@ -1,0 +1,5 @@
+- name: dispatch to s-expr parser
+  include_tasks: "{{ item }}"
+  with_first_found:
+    - "parse_{{ cst[0] }}.yml"
+    - parse_call.yml # Default, fall back case

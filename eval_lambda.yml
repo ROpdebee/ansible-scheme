@@ -1,0 +1,7 @@
+- set_fact:
+    result:
+      type: VALUE
+      data_type: LAMBDA
+      parameters: "{{ expr.parameters }}"
+      body: "{{ expr.body }}"
+      closure: "{{ env }}"

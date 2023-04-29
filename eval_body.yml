@@ -1,0 +1,8 @@
+- assert:
+    that: '{{ expr.type == "BODY" }}'
+
+- name: Evaluate body
+  include_tasks: descend.yml
+  loop: "{{ expr.children }}"
+  loop_control:
+    loop_var: next_expr
