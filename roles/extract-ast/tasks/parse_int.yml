@@ -2,4 +2,4 @@
     ast:
       type: VALUE
       data_type: int
-      value: "{{ cst }}"
+      value: "{{ cst | int }}"

@@ -2,10 +2,10 @@
     stack: "{{ stack + [ast_children] }}"
     ast_children: []
 
-- include_tasks: parse_body_item.yml
+- include_tasks: parse_children.yml
   loop: "{{ cst[1:] }}"
   loop_control:
-    loop_var: body_item
+    loop_var: cst_child
 
 - set_fact:
     ast:

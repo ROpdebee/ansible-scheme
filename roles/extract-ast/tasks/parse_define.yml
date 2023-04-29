@@ -1,5 +1,7 @@
 - include_tasks: desugar_define_function.yml
-  when: cst[1] is iterable and cst[1] is not string
+  when:
+    - cst[1] is iterable
+    - cst[1] is not string
 
 - set_fact:
     stack: "{{ stack + [cst] }}"

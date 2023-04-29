@@ -1,4 +1,10 @@
 - set_fact:
-    cst: "{{ ['define', cst[1][0], ['lambda', cst[1][1:]] + cst[2:]] }}"
+    cst:
+      - define
+      - '{{ name }}'
+      - "{{ ['lambda', parameters] + body }}"
+  vars:
+    name: '{{ cst[1][0] }}'
+    parameters: '{{ cst[1][1:] }}'
+    body: '{{ cst[2:] }}'
 
-- debug: var=cst

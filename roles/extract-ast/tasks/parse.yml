@@ -1,7 +1,15 @@
 - debug: var=cst
 
 - name: dispatch to parser
-  include_tasks: "{{ item }}"
-  with_first_found:
-    - "parse_{{ cst | type_debug }}.yml"
-    - 'parse_{{ "int" if cst is string and (cst | int or cst == "0") else ("name" if cst is string else ("sexpr" if cst is iterable)) }}.yml'
+  include_tasks: "parse_{{ parse_type | trim }}.yml"
+  vars:
+    parse_type: >-
+      {% if cst | int or cst == "0" %}
+      int
+      {% elif cst is string %}
+      name
+      {% elif cst is iterable %}
+      sexpr
+      {% else %}
+      invalid
+      {% endif %}

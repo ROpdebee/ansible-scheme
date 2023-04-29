@@ -1,8 +1,8 @@
 - set_fact:
     stack: "{{ stack + [cst] }}"
-    cst: "{{ body_item }}"
+    cst: "{{ cst_child }}"
 
-- name: parse body item
+- name: Parse child
   include_tasks: parse.yml
 
 - set_fact:
